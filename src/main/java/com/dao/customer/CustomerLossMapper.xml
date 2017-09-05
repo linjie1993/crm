@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.customer.CustomerLossMapper" >
+  <resultMap id="BaseResultMap" type="com.entity.customer.CustomerLoss" >
+    <id column="cl_id" property="clId" jdbcType="INTEGER" />
+    <result column="cl_c_id" property="clCId" jdbcType="INTEGER" />
+    <result column="cl_customer_manager" property="clCustomerManager" jdbcType="VARCHAR" />
+    <result column="cl_date" property="clDate" jdbcType="DATE" />
+    <result column="cl_reprieve" property="clReprieve" jdbcType="VARCHAR" />
+    <result column="cl_reason" property="clReason" jdbcType="VARCHAR" />
+    <result column="cl_type" property="clType" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    cl_id, cl_c_id, cl_customer_manager, cl_date, cl_reprieve, cl_reason, cl_type
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from customer_loss
+    where cl_id = #{clId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from customer_loss
+    where cl_id = #{clId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.entity.customer.CustomerLoss" >
+    insert into customer_loss (cl_id, cl_c_id, cl_customer_manager, 
+      cl_date, cl_reprieve, cl_reason, 
+      cl_type)
+    values (#{clId,jdbcType=INTEGER}, #{clCId,jdbcType=INTEGER}, #{clCustomerManager,jdbcType=VARCHAR}, 
+      #{clDate,jdbcType=DATE}, #{clReprieve,jdbcType=VARCHAR}, #{clReason,jdbcType=VARCHAR}, 
+      #{clType,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.entity.customer.CustomerLoss" >
+    insert into customer_loss
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="clId != null" >
+        cl_id,
+      </if>
+      <if test="clCId != null" >
+        cl_c_id,
+      </if>
+      <if test="clCustomerManager != null" >
+        cl_customer_manager,
+      </if>
+      <if test="clDate != null" >
+        cl_date,
+      </if>
+      <if test="clReprieve != null" >
+        cl_reprieve,
+      </if>
+      <if test="clReason != null" >
+        cl_reason,
+      </if>
+      <if test="clType != null" >
+        cl_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="clId != null" >
+        #{clId,jdbcType=INTEGER},
+      </if>
+      <if test="clCId != null" >
+        #{clCId,jdbcType=INTEGER},
+      </if>
+      <if test="clCustomerManager != null" >
+        #{clCustomerManager,jdbcType=VARCHAR},
+      </if>
+      <if test="clDate != null" >
+        #{clDate,jdbcType=DATE},
+      </if>
+      <if test="clReprieve != null" >
+        #{clReprieve,jdbcType=VARCHAR},
+      </if>
+      <if test="clReason != null" >
+        #{clReason,jdbcType=VARCHAR},
+      </if>
+      <if test="clType != null" >
+        #{clType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.entity.customer.CustomerLoss" >
+    update customer_loss
+    <set >
+      <if test="clCId != null" >
+        cl_c_id = #{clCId,jdbcType=INTEGER},
+      </if>
+      <if test="clCustomerManager != null" >
+        cl_customer_manager = #{clCustomerManager,jdbcType=VARCHAR},
+      </if>
+      <if test="clDate != null" >
+        cl_date = #{clDate,jdbcType=DATE},
+      </if>
+      <if test="clReprieve != null" >
+        cl_reprieve = #{clReprieve,jdbcType=VARCHAR},
+      </if>
+      <if test="clReason != null" >
+        cl_reason = #{clReason,jdbcType=VARCHAR},
+      </if>
+      <if test="clType != null" >
+        cl_type = #{clType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where cl_id = #{clId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.entity.customer.CustomerLoss" >
+    update customer_loss
+    set cl_c_id = #{clCId,jdbcType=INTEGER},
+      cl_customer_manager = #{clCustomerManager,jdbcType=VARCHAR},
+      cl_date = #{clDate,jdbcType=DATE},
+      cl_reprieve = #{clReprieve,jdbcType=VARCHAR},
+      cl_reason = #{clReason,jdbcType=VARCHAR},
+      cl_type = #{clType,jdbcType=VARCHAR}
+    where cl_id = #{clId,jdbcType=INTEGER}
+  </update>
+</mapper>

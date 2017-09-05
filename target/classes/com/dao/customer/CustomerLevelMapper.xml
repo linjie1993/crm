@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.customer.CustomerLevelMapper" >
+  <resultMap id="BaseResultMap" type="com.entity.customer.CustomerLevel" >
+    <id column="c_le_id" property="cLeId" jdbcType="INTEGER" />
+    <result column="c_le_name" property="cLeName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    c_le_id, c_le_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from customer_level
+    where c_le_id = #{cLeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from customer_level
+    where c_le_id = #{cLeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.entity.customer.CustomerLevel" >
+    insert into customer_level (c_le_id, c_le_name)
+    values (#{cLeId,jdbcType=INTEGER}, #{cLeName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.entity.customer.CustomerLevel" >
+    insert into customer_level
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cLeId != null" >
+        c_le_id,
+      </if>
+      <if test="cLeName != null" >
+        c_le_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cLeId != null" >
+        #{cLeId,jdbcType=INTEGER},
+      </if>
+      <if test="cLeName != null" >
+        #{cLeName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.entity.customer.CustomerLevel" >
+    update customer_level
+    <set >
+      <if test="cLeName != null" >
+        c_le_name = #{cLeName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where c_le_id = #{cLeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.entity.customer.CustomerLevel" >
+    update customer_level
+    set c_le_name = #{cLeName,jdbcType=VARCHAR}
+    where c_le_id = #{cLeId,jdbcType=INTEGER}
+  </update>
+</mapper>

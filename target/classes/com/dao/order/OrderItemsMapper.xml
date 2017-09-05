@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.order.OrderItemsMapper" >
+  <resultMap id="BaseResultMap" type="com.entity.order.OrderItems" >
+    <id column="oi_id" property="oiId" jdbcType="INTEGER" />
+    <result column="oi_p_id" property="oiPId" jdbcType="INTEGER" />
+    <result column="oi_count" property="oiCount" jdbcType="INTEGER" />
+    <result column="o_unit" property="oUnit" jdbcType="VARCHAR" />
+    <result column="o_price" property="oPrice" jdbcType="BIGINT" />
+    <result column="o_subtotal" property="oSubtotal" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    oi_id, oi_p_id, oi_count, o_unit, o_price, o_subtotal
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_items
+    where oi_id = #{oiId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from order_items
+    where oi_id = #{oiId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.entity.order.OrderItems" >
+    insert into order_items (oi_id, oi_p_id, oi_count, 
+      o_unit, o_price, o_subtotal
+      )
+    values (#{oiId,jdbcType=INTEGER}, #{oiPId,jdbcType=INTEGER}, #{oiCount,jdbcType=INTEGER}, 
+      #{oUnit,jdbcType=VARCHAR}, #{oPrice,jdbcType=BIGINT}, #{oSubtotal,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.entity.order.OrderItems" >
+    insert into order_items
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="oiId != null" >
+        oi_id,
+      </if>
+      <if test="oiPId != null" >
+        oi_p_id,
+      </if>
+      <if test="oiCount != null" >
+        oi_count,
+      </if>
+      <if test="oUnit != null" >
+        o_unit,
+      </if>
+      <if test="oPrice != null" >
+        o_price,
+      </if>
+      <if test="oSubtotal != null" >
+        o_subtotal,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="oiId != null" >
+        #{oiId,jdbcType=INTEGER},
+      </if>
+      <if test="oiPId != null" >
+        #{oiPId,jdbcType=INTEGER},
+      </if>
+      <if test="oiCount != null" >
+        #{oiCount,jdbcType=INTEGER},
+      </if>
+      <if test="oUnit != null" >
+        #{oUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="oPrice != null" >
+        #{oPrice,jdbcType=BIGINT},
+      </if>
+      <if test="oSubtotal != null" >
+        #{oSubtotal,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.entity.order.OrderItems" >
+    update order_items
+    <set >
+      <if test="oiPId != null" >
+        oi_p_id = #{oiPId,jdbcType=INTEGER},
+      </if>
+      <if test="oiCount != null" >
+        oi_count = #{oiCount,jdbcType=INTEGER},
+      </if>
+      <if test="oUnit != null" >
+        o_unit = #{oUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="oPrice != null" >
+        o_price = #{oPrice,jdbcType=BIGINT},
+      </if>
+      <if test="oSubtotal != null" >
+        o_subtotal = #{oSubtotal,jdbcType=BIGINT},
+      </if>
+    </set>
+    where oi_id = #{oiId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.entity.order.OrderItems" >
+    update order_items
+    set oi_p_id = #{oiPId,jdbcType=INTEGER},
+      oi_count = #{oiCount,jdbcType=INTEGER},
+      o_unit = #{oUnit,jdbcType=VARCHAR},
+      o_price = #{oPrice,jdbcType=BIGINT},
+      o_subtotal = #{oSubtotal,jdbcType=BIGINT}
+    where oi_id = #{oiId,jdbcType=INTEGER}
+  </update>
+</mapper>

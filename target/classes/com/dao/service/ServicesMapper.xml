@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.service.ServicesMapper" >
+  <resultMap id="BaseResultMap" type="com.entity.service.Services" >
+    <id column="s_se_id" property="sSeId" jdbcType="INTEGER" />
+    <result column="s_st_id" property="sStId" jdbcType="INTEGER" />
+    <result column="s_content" property="sContent" jdbcType="VARCHAR" />
+    <result column="s_customer" property="sCustomer" jdbcType="VARCHAR" />
+    <result column="s_ss_id" property="sSsId" jdbcType="INTEGER" />
+    <result column="s_request" property="sRequest" jdbcType="VARCHAR" />
+    <result column="s_creater" property="sCreater" jdbcType="VARCHAR" />
+    <result column="s_create_time" property="sCreateTime" jdbcType="DATE" />
+    <result column="s_assign_who" property="sAssignWho" jdbcType="VARCHAR" />
+    <result column="s_assign_time" property="sAssignTime" jdbcType="DATE" />
+    <result column="s_disposer" property="sDisposer" jdbcType="VARCHAR" />
+    <result column="s_dispose_time" property="sDisposeTime" jdbcType="DATE" />
+    <result column="s_result" property="sResult" jdbcType="VARCHAR" />
+    <result column="s_satisfaction" property="sSatisfaction" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    s_se_id, s_st_id, s_content, s_customer, s_ss_id, s_request, s_creater, s_create_time, 
+    s_assign_who, s_assign_time, s_disposer, s_dispose_time, s_result, s_satisfaction
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from services_t
+    where s_se_id = #{sSeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from services_t
+    where s_se_id = #{sSeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.entity.service.Services" >
+    insert into services_t (s_se_id, s_st_id, s_content, 
+      s_customer, s_ss_id, s_request, 
+      s_creater, s_create_time, s_assign_who, 
+      s_assign_time, s_disposer, s_dispose_time, 
+      s_result, s_satisfaction)
+    values (#{sSeId,jdbcType=INTEGER}, #{sStId,jdbcType=INTEGER}, #{sContent,jdbcType=VARCHAR}, 
+      #{sCustomer,jdbcType=VARCHAR}, #{sSsId,jdbcType=INTEGER}, #{sRequest,jdbcType=VARCHAR}, 
+      #{sCreater,jdbcType=VARCHAR}, #{sCreateTime,jdbcType=DATE}, #{sAssignWho,jdbcType=VARCHAR}, 
+      #{sAssignTime,jdbcType=DATE}, #{sDisposer,jdbcType=VARCHAR}, #{sDisposeTime,jdbcType=DATE}, 
+      #{sResult,jdbcType=VARCHAR}, #{sSatisfaction,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.entity.service.Services" >
+    insert into services_t
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sSeId != null" >
+        s_se_id,
+      </if>
+      <if test="sStId != null" >
+        s_st_id,
+      </if>
+      <if test="sContent != null" >
+        s_content,
+      </if>
+      <if test="sCustomer != null" >
+        s_customer,
+      </if>
+      <if test="sSsId != null" >
+        s_ss_id,
+      </if>
+      <if test="sRequest != null" >
+        s_request,
+      </if>
+      <if test="sCreater != null" >
+        s_creater,
+      </if>
+      <if test="sCreateTime != null" >
+        s_create_time,
+      </if>
+      <if test="sAssignWho != null" >
+        s_assign_who,
+      </if>
+      <if test="sAssignTime != null" >
+        s_assign_time,
+      </if>
+      <if test="sDisposer != null" >
+        s_disposer,
+      </if>
+      <if test="sDisposeTime != null" >
+        s_dispose_time,
+      </if>
+      <if test="sResult != null" >
+        s_result,
+      </if>
+      <if test="sSatisfaction != null" >
+        s_satisfaction,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sSeId != null" >
+        #{sSeId,jdbcType=INTEGER},
+      </if>
+      <if test="sStId != null" >
+        #{sStId,jdbcType=INTEGER},
+      </if>
+      <if test="sContent != null" >
+        #{sContent,jdbcType=VARCHAR},
+      </if>
+      <if test="sCustomer != null" >
+        #{sCustomer,jdbcType=VARCHAR},
+      </if>
+      <if test="sSsId != null" >
+        #{sSsId,jdbcType=INTEGER},
+      </if>
+      <if test="sRequest != null" >
+        #{sRequest,jdbcType=VARCHAR},
+      </if>
+      <if test="sCreater != null" >
+        #{sCreater,jdbcType=VARCHAR},
+      </if>
+      <if test="sCreateTime != null" >
+        #{sCreateTime,jdbcType=DATE},
+      </if>
+      <if test="sAssignWho != null" >
+        #{sAssignWho,jdbcType=VARCHAR},
+      </if>
+      <if test="sAssignTime != null" >
+        #{sAssignTime,jdbcType=DATE},
+      </if>
+      <if test="sDisposer != null" >
+        #{sDisposer,jdbcType=VARCHAR},
+      </if>
+      <if test="sDisposeTime != null" >
+        #{sDisposeTime,jdbcType=DATE},
+      </if>
+      <if test="sResult != null" >
+        #{sResult,jdbcType=VARCHAR},
+      </if>
+      <if test="sSatisfaction != null" >
+        #{sSatisfaction,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.entity.service.Services" >
+    update services_t
+    <set >
+      <if test="sStId != null" >
+        s_st_id = #{sStId,jdbcType=INTEGER},
+      </if>
+      <if test="sContent != null" >
+        s_content = #{sContent,jdbcType=VARCHAR},
+      </if>
+      <if test="sCustomer != null" >
+        s_customer = #{sCustomer,jdbcType=VARCHAR},
+      </if>
+      <if test="sSsId != null" >
+        s_ss_id = #{sSsId,jdbcType=INTEGER},
+      </if>
+      <if test="sRequest != null" >
+        s_request = #{sRequest,jdbcType=VARCHAR},
+      </if>
+      <if test="sCreater != null" >
+        s_creater = #{sCreater,jdbcType=VARCHAR},
+      </if>
+      <if test="sCreateTime != null" >
+        s_create_time = #{sCreateTime,jdbcType=DATE},
+      </if>
+      <if test="sAssignWho != null" >
+        s_assign_who = #{sAssignWho,jdbcType=VARCHAR},
+      </if>
+      <if test="sAssignTime != null" >
+        s_assign_time = #{sAssignTime,jdbcType=DATE},
+      </if>
+      <if test="sDisposer != null" >
+        s_disposer = #{sDisposer,jdbcType=VARCHAR},
+      </if>
+      <if test="sDisposeTime != null" >
+        s_dispose_time = #{sDisposeTime,jdbcType=DATE},
+      </if>
+      <if test="sResult != null" >
+        s_result = #{sResult,jdbcType=VARCHAR},
+      </if>
+      <if test="sSatisfaction != null" >
+        s_satisfaction = #{sSatisfaction,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where s_se_id = #{sSeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.entity.service.Services" >
+    update services_t
+    set s_st_id = #{sStId,jdbcType=INTEGER},
+      s_content = #{sContent,jdbcType=VARCHAR},
+      s_customer = #{sCustomer,jdbcType=VARCHAR},
+      s_ss_id = #{sSsId,jdbcType=INTEGER},
+      s_request = #{sRequest,jdbcType=VARCHAR},
+      s_creater = #{sCreater,jdbcType=VARCHAR},
+      s_create_time = #{sCreateTime,jdbcType=DATE},
+      s_assign_who = #{sAssignWho,jdbcType=VARCHAR},
+      s_assign_time = #{sAssignTime,jdbcType=DATE},
+      s_disposer = #{sDisposer,jdbcType=VARCHAR},
+      s_dispose_time = #{sDisposeTime,jdbcType=DATE},
+      s_result = #{sResult,jdbcType=VARCHAR},
+      s_satisfaction = #{sSatisfaction,jdbcType=VARCHAR}
+    where s_se_id = #{sSeId,jdbcType=INTEGER}
+  </update>
+</mapper>

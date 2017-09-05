@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.product.ProductMapper" >
+  <resultMap id="BaseResultMap" type="com.entity.product.Product" >
+    <id column="p_id" property="pId" jdbcType="INTEGER" />
+    <result column="p_name" property="pName" jdbcType="VARCHAR" />
+    <result column="p_type" property="pType" jdbcType="VARCHAR" />
+    <result column="p_production_batch" property="pProductionBatch" jdbcType="VARCHAR" />
+    <result column="p_unit" property="pUnit" jdbcType="VARCHAR" />
+    <result column="p_price" property="pPrice" jdbcType="BIGINT" />
+    <result column="p_notes" property="pNotes" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    p_id, p_name, p_type, p_production_batch, p_unit, p_price, p_notes
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from product_t
+    where p_id = #{pId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from product_t
+    where p_id = #{pId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.entity.product.Product" >
+    insert into product_t (p_id, p_name, p_type, 
+      p_production_batch, p_unit, p_price, 
+      p_notes)
+    values (#{pId,jdbcType=INTEGER}, #{pName,jdbcType=VARCHAR}, #{pType,jdbcType=VARCHAR}, 
+      #{pProductionBatch,jdbcType=VARCHAR}, #{pUnit,jdbcType=VARCHAR}, #{pPrice,jdbcType=BIGINT}, 
+      #{pNotes,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.entity.product.Product" >
+    insert into product_t
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pId != null" >
+        p_id,
+      </if>
+      <if test="pName != null" >
+        p_name,
+      </if>
+      <if test="pType != null" >
+        p_type,
+      </if>
+      <if test="pProductionBatch != null" >
+        p_production_batch,
+      </if>
+      <if test="pUnit != null" >
+        p_unit,
+      </if>
+      <if test="pPrice != null" >
+        p_price,
+      </if>
+      <if test="pNotes != null" >
+        p_notes,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pId != null" >
+        #{pId,jdbcType=INTEGER},
+      </if>
+      <if test="pName != null" >
+        #{pName,jdbcType=VARCHAR},
+      </if>
+      <if test="pType != null" >
+        #{pType,jdbcType=VARCHAR},
+      </if>
+      <if test="pProductionBatch != null" >
+        #{pProductionBatch,jdbcType=VARCHAR},
+      </if>
+      <if test="pUnit != null" >
+        #{pUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="pPrice != null" >
+        #{pPrice,jdbcType=BIGINT},
+      </if>
+      <if test="pNotes != null" >
+        #{pNotes,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.entity.product.Product" >
+    update product_t
+    <set >
+      <if test="pName != null" >
+        p_name = #{pName,jdbcType=VARCHAR},
+      </if>
+      <if test="pType != null" >
+        p_type = #{pType,jdbcType=VARCHAR},
+      </if>
+      <if test="pProductionBatch != null" >
+        p_production_batch = #{pProductionBatch,jdbcType=VARCHAR},
+      </if>
+      <if test="pUnit != null" >
+        p_unit = #{pUnit,jdbcType=VARCHAR},
+      </if>
+      <if test="pPrice != null" >
+        p_price = #{pPrice,jdbcType=BIGINT},
+      </if>
+      <if test="pNotes != null" >
+        p_notes = #{pNotes,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where p_id = #{pId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.entity.product.Product" >
+    update product_t
+    set p_name = #{pName,jdbcType=VARCHAR},
+      p_type = #{pType,jdbcType=VARCHAR},
+      p_production_batch = #{pProductionBatch,jdbcType=VARCHAR},
+      p_unit = #{pUnit,jdbcType=VARCHAR},
+      p_price = #{pPrice,jdbcType=BIGINT},
+      p_notes = #{pNotes,jdbcType=VARCHAR}
+    where p_id = #{pId,jdbcType=INTEGER}
+  </update>
+</mapper>

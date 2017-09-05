@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.role.RolePermissionMapper" >
+  <resultMap id="BaseResultMap" type="com.entity.role.RolePermission" >
+    <id column="rp_r_id" property="rpRId" jdbcType="INTEGER" />
+    <result column="rp_p_id" property="rpPId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    rp_r_id, rp_p_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from role_permission
+    where rp_r_id = #{rpRId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from role_permission
+    where rp_r_id = #{rpRId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.entity.role.RolePermission" >
+    insert into role_permission (rp_r_id, rp_p_id)
+    values (#{rpRId,jdbcType=INTEGER}, #{rpPId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.entity.role.RolePermission" >
+    insert into role_permission
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="rpRId != null" >
+        rp_r_id,
+      </if>
+      <if test="rpPId != null" >
+        rp_p_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="rpRId != null" >
+        #{rpRId,jdbcType=INTEGER},
+      </if>
+      <if test="rpPId != null" >
+        #{rpPId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.entity.role.RolePermission" >
+    update role_permission
+    <set >
+      <if test="rpPId != null" >
+        rp_p_id = #{rpPId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where rp_r_id = #{rpRId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.entity.role.RolePermission" >
+    update role_permission
+    set rp_p_id = #{rpPId,jdbcType=INTEGER}
+    where rp_r_id = #{rpRId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.sales.SaleOpportunitiesMapper" >
+  <resultMap id="BaseResultMap" type="com.entity.sales.SaleOpportunities" >
+    <id column="so_id" property="soId" jdbcType="INTEGER" />
+    <result column="so_customer_name" property="soCustomerName" jdbcType="VARCHAR" />
+    <result column="so_summary" property="soSummary" jdbcType="VARCHAR" />
+    <result column="so_contact_name" property="soContactName" jdbcType="VARCHAR" />
+    <result column="so_description" property="soDescription" jdbcType="VARCHAR" />
+    <result column="so_address" property="soAddress" jdbcType="VARCHAR" />
+    <result column="so_creater" property="soCreater" jdbcType="VARCHAR" />
+    <result column="so_create_time" property="soCreateTime" jdbcType="DATE" />
+    <result column="so_assign_who" property="soAssignWho" jdbcType="VARCHAR" />
+    <result column="so_assigntime" property="soAssigntime" jdbcType="DATE" />
+    <result column="so_opportunities_source" property="soOpportunitiesSource" jdbcType="VARCHAR" />
+    <result column="so_success_probability" property="soSuccessProbability" jdbcType="INTEGER" />
+    <result column="so_contacttelephone" property="soContacttelephone" jdbcType="VARCHAR" />
+    <result column="so_status" property="soStatus" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    so_id, so_customer_name, so_summary, so_contact_name, so_description, so_address, 
+    so_creater, so_create_time, so_assign_who, so_assigntime, so_opportunities_source, 
+    so_success_probability, so_contacttelephone, so_status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sales_opportunities
+    where so_id = #{soId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sales_opportunities
+    where so_id = #{soId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.entity.sales.SaleOpportunities" >
+    insert into sales_opportunities (so_id, so_customer_name, so_summary, 
+      so_contact_name, so_description, so_address, 
+      so_creater, so_create_time, so_assign_who, 
+      so_assigntime, so_opportunities_source, so_success_probability, 
+      so_contacttelephone, so_status)
+    values (#{soId,jdbcType=INTEGER}, #{soCustomerName,jdbcType=VARCHAR}, #{soSummary,jdbcType=VARCHAR}, 
+      #{soContactName,jdbcType=VARCHAR}, #{soDescription,jdbcType=VARCHAR}, #{soAddress,jdbcType=VARCHAR}, 
+      #{soCreater,jdbcType=VARCHAR}, #{soCreateTime,jdbcType=DATE}, #{soAssignWho,jdbcType=VARCHAR}, 
+      #{soAssigntime,jdbcType=DATE}, #{soOpportunitiesSource,jdbcType=VARCHAR}, #{soSuccessProbability,jdbcType=INTEGER}, 
+      #{soContacttelephone,jdbcType=VARCHAR}, #{soStatus,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.entity.sales.SaleOpportunities" >
+    insert into sales_opportunities
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="soId != null" >
+        so_id,
+      </if>
+      <if test="soCustomerName != null" >
+        so_customer_name,
+      </if>
+      <if test="soSummary != null" >
+        so_summary,
+      </if>
+      <if test="soContactName != null" >
+        so_contact_name,
+      </if>
+      <if test="soDescription != null" >
+        so_description,
+      </if>
+      <if test="soAddress != null" >
+        so_address,
+      </if>
+      <if test="soCreater != null" >
+        so_creater,
+      </if>
+      <if test="soCreateTime != null" >
+        so_create_time,
+      </if>
+      <if test="soAssignWho != null" >
+        so_assign_who,
+      </if>
+      <if test="soAssigntime != null" >
+        so_assigntime,
+      </if>
+      <if test="soOpportunitiesSource != null" >
+        so_opportunities_source,
+      </if>
+      <if test="soSuccessProbability != null" >
+        so_success_probability,
+      </if>
+      <if test="soContacttelephone != null" >
+        so_contacttelephone,
+      </if>
+      <if test="soStatus != null" >
+        so_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="soId != null" >
+        #{soId,jdbcType=INTEGER},
+      </if>
+      <if test="soCustomerName != null" >
+        #{soCustomerName,jdbcType=VARCHAR},
+      </if>
+      <if test="soSummary != null" >
+        #{soSummary,jdbcType=VARCHAR},
+      </if>
+      <if test="soContactName != null" >
+        #{soContactName,jdbcType=VARCHAR},
+      </if>
+      <if test="soDescription != null" >
+        #{soDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="soAddress != null" >
+        #{soAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="soCreater != null" >
+        #{soCreater,jdbcType=VARCHAR},
+      </if>
+      <if test="soCreateTime != null" >
+        #{soCreateTime,jdbcType=DATE},
+      </if>
+      <if test="soAssignWho != null" >
+        #{soAssignWho,jdbcType=VARCHAR},
+      </if>
+      <if test="soAssigntime != null" >
+        #{soAssigntime,jdbcType=DATE},
+      </if>
+      <if test="soOpportunitiesSource != null" >
+        #{soOpportunitiesSource,jdbcType=VARCHAR},
+      </if>
+      <if test="soSuccessProbability != null" >
+        #{soSuccessProbability,jdbcType=INTEGER},
+      </if>
+      <if test="soContacttelephone != null" >
+        #{soContacttelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="soStatus != null" >
+        #{soStatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.entity.sales.SaleOpportunities" >
+    update sales_opportunities
+    <set >
+      <if test="soCustomerName != null" >
+        so_customer_name = #{soCustomerName,jdbcType=VARCHAR},
+      </if>
+      <if test="soSummary != null" >
+        so_summary = #{soSummary,jdbcType=VARCHAR},
+      </if>
+      <if test="soContactName != null" >
+        so_contact_name = #{soContactName,jdbcType=VARCHAR},
+      </if>
+      <if test="soDescription != null" >
+        so_description = #{soDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="soAddress != null" >
+        so_address = #{soAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="soCreater != null" >
+        so_creater = #{soCreater,jdbcType=VARCHAR},
+      </if>
+      <if test="soCreateTime != null" >
+        so_create_time = #{soCreateTime,jdbcType=DATE},
+      </if>
+      <if test="soAssignWho != null" >
+        so_assign_who = #{soAssignWho,jdbcType=VARCHAR},
+      </if>
+      <if test="soAssigntime != null" >
+        so_assigntime = #{soAssigntime,jdbcType=DATE},
+      </if>
+      <if test="soOpportunitiesSource != null" >
+        so_opportunities_source = #{soOpportunitiesSource,jdbcType=VARCHAR},
+      </if>
+      <if test="soSuccessProbability != null" >
+        so_success_probability = #{soSuccessProbability,jdbcType=INTEGER},
+      </if>
+      <if test="soContacttelephone != null" >
+        so_contacttelephone = #{soContacttelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="soStatus != null" >
+        so_status = #{soStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where so_id = #{soId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.entity.sales.SaleOpportunities" >
+    update sales_opportunities
+    set so_customer_name = #{soCustomerName,jdbcType=VARCHAR},
+      so_summary = #{soSummary,jdbcType=VARCHAR},
+      so_contact_name = #{soContactName,jdbcType=VARCHAR},
+      so_description = #{soDescription,jdbcType=VARCHAR},
+      so_address = #{soAddress,jdbcType=VARCHAR},
+      so_creater = #{soCreater,jdbcType=VARCHAR},
+      so_create_time = #{soCreateTime,jdbcType=DATE},
+      so_assign_who = #{soAssignWho,jdbcType=VARCHAR},
+      so_assigntime = #{soAssigntime,jdbcType=DATE},
+      so_opportunities_source = #{soOpportunitiesSource,jdbcType=VARCHAR},
+      so_success_probability = #{soSuccessProbability,jdbcType=INTEGER},
+      so_contacttelephone = #{soContacttelephone,jdbcType=VARCHAR},
+      so_status = #{soStatus,jdbcType=VARCHAR}
+    where so_id = #{soId,jdbcType=INTEGER}
+  </update>
+</mapper>

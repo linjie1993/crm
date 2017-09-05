@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.product.StoreMapper" >
+  <resultMap id="BaseResultMap" type="com.entity.product.Store" >
+    <id column="s_st_id" property="sStId" jdbcType="INTEGER" />
+    <result column="s_p_id" property="sPId" jdbcType="INTEGER" />
+    <result column="s_storehouse" property="sStorehouse" jdbcType="VARCHAR" />
+    <result column="s_goods_allocation" property="sGoodsAllocation" jdbcType="VARCHAR" />
+    <result column="s_notes" property="sNotes" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    s_st_id, s_p_id, s_storehouse, s_goods_allocation, s_notes
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from store_t
+    where s_st_id = #{sStId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from store_t
+    where s_st_id = #{sStId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.entity.product.Store" >
+    insert into store_t (s_st_id, s_p_id, s_storehouse, 
+      s_goods_allocation, s_notes)
+    values (#{sStId,jdbcType=INTEGER}, #{sPId,jdbcType=INTEGER}, #{sStorehouse,jdbcType=VARCHAR}, 
+      #{sGoodsAllocation,jdbcType=VARCHAR}, #{sNotes,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.entity.product.Store" >
+    insert into store_t
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sStId != null" >
+        s_st_id,
+      </if>
+      <if test="sPId != null" >
+        s_p_id,
+      </if>
+      <if test="sStorehouse != null" >
+        s_storehouse,
+      </if>
+      <if test="sGoodsAllocation != null" >
+        s_goods_allocation,
+      </if>
+      <if test="sNotes != null" >
+        s_notes,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sStId != null" >
+        #{sStId,jdbcType=INTEGER},
+      </if>
+      <if test="sPId != null" >
+        #{sPId,jdbcType=INTEGER},
+      </if>
+      <if test="sStorehouse != null" >
+        #{sStorehouse,jdbcType=VARCHAR},
+      </if>
+      <if test="sGoodsAllocation != null" >
+        #{sGoodsAllocation,jdbcType=VARCHAR},
+      </if>
+      <if test="sNotes != null" >
+        #{sNotes,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.entity.product.Store" >
+    update store_t
+    <set >
+      <if test="sPId != null" >
+        s_p_id = #{sPId,jdbcType=INTEGER},
+      </if>
+      <if test="sStorehouse != null" >
+        s_storehouse = #{sStorehouse,jdbcType=VARCHAR},
+      </if>
+      <if test="sGoodsAllocation != null" >
+        s_goods_allocation = #{sGoodsAllocation,jdbcType=VARCHAR},
+      </if>
+      <if test="sNotes != null" >
+        s_notes = #{sNotes,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where s_st_id = #{sStId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.entity.product.Store" >
+    update store_t
+    set s_p_id = #{sPId,jdbcType=INTEGER},
+      s_storehouse = #{sStorehouse,jdbcType=VARCHAR},
+      s_goods_allocation = #{sGoodsAllocation,jdbcType=VARCHAR},
+      s_notes = #{sNotes,jdbcType=VARCHAR}
+    where s_st_id = #{sStId,jdbcType=INTEGER}
+  </update>
+</mapper>

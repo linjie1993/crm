@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.service.ServiceStatusMapper" >
+  <resultMap id="BaseResultMap" type="com.entity.service.ServiceStatus" >
+    <id column="ss_id" property="ssId" jdbcType="INTEGER" />
+    <result column="ss_name" property="ssName" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ss_id, ss_name
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from service_status
+    where ss_id = #{ssId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from service_status
+    where ss_id = #{ssId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.entity.service.ServiceStatus" >
+    insert into service_status (ss_id, ss_name)
+    values (#{ssId,jdbcType=INTEGER}, #{ssName,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.entity.service.ServiceStatus" >
+    insert into service_status
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ssId != null" >
+        ss_id,
+      </if>
+      <if test="ssName != null" >
+        ss_name,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ssId != null" >
+        #{ssId,jdbcType=INTEGER},
+      </if>
+      <if test="ssName != null" >
+        #{ssName,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.entity.service.ServiceStatus" >
+    update service_status
+    <set >
+      <if test="ssName != null" >
+        ss_name = #{ssName,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ss_id = #{ssId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.entity.service.ServiceStatus" >
+    update service_status
+    set ss_name = #{ssName,jdbcType=VARCHAR}
+    where ss_id = #{ssId,jdbcType=INTEGER}
+  </update>
+</mapper>

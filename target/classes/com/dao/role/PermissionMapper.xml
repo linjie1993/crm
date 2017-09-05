@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.role.PermissionMapper" >
+  <resultMap id="BaseResultMap" type="com.entity.role.Permission" >
+    <id column="p_pe_id" property="pPeId" jdbcType="INTEGER" />
+    <result column="p_pe_content" property="pPeContent" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    p_pe_id, p_pe_content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from permission_t
+    where p_pe_id = #{pPeId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from permission_t
+    where p_pe_id = #{pPeId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.entity.role.Permission" >
+    insert into permission_t (p_pe_id, p_pe_content)
+    values (#{pPeId,jdbcType=INTEGER}, #{pPeContent,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.entity.role.Permission" >
+    insert into permission_t
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pPeId != null" >
+        p_pe_id,
+      </if>
+      <if test="pPeContent != null" >
+        p_pe_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pPeId != null" >
+        #{pPeId,jdbcType=INTEGER},
+      </if>
+      <if test="pPeContent != null" >
+        #{pPeContent,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.entity.role.Permission" >
+    update permission_t
+    <set >
+      <if test="pPeContent != null" >
+        p_pe_content = #{pPeContent,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where p_pe_id = #{pPeId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.entity.role.Permission" >
+    update permission_t
+    set p_pe_content = #{pPeContent,jdbcType=VARCHAR}
+    where p_pe_id = #{pPeId,jdbcType=INTEGER}
+  </update>
+</mapper>

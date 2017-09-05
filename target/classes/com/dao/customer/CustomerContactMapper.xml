@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.customer.CustomerContactMapper" >
+  <resultMap id="BaseResultMap" type="com.entity.customer.CustomerContact" >
+    <id column="cc_id" property="ccId" jdbcType="INTEGER" />
+    <result column="cc_customerid" property="ccCustomerid" jdbcType="VARCHAR" />
+    <result column="cc_name" property="ccName" jdbcType="VARCHAR" />
+    <result column="cc_sex" property="ccSex" jdbcType="VARCHAR" />
+    <result column="cc_position" property="ccPosition" jdbcType="VARCHAR" />
+    <result column="cc_office_phone" property="ccOfficePhone" jdbcType="VARCHAR" />
+    <result column="cc_mobilephone" property="ccMobilephone" jdbcType="VARCHAR" />
+    <result column="cc_notes" property="ccNotes" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    cc_id, cc_customerid, cc_name, cc_sex, cc_position, cc_office_phone, cc_mobilephone, 
+    cc_notes
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from customer_contact
+    where cc_id = #{ccId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from customer_contact
+    where cc_id = #{ccId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.entity.customer.CustomerContact" >
+    insert into customer_contact (cc_id, cc_customerid, cc_name, 
+      cc_sex, cc_position, cc_office_phone, 
+      cc_mobilephone, cc_notes)
+    values (#{ccId,jdbcType=INTEGER}, #{ccCustomerid,jdbcType=VARCHAR}, #{ccName,jdbcType=VARCHAR}, 
+      #{ccSex,jdbcType=VARCHAR}, #{ccPosition,jdbcType=VARCHAR}, #{ccOfficePhone,jdbcType=VARCHAR}, 
+      #{ccMobilephone,jdbcType=VARCHAR}, #{ccNotes,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.entity.customer.CustomerContact" >
+    insert into customer_contact
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ccId != null" >
+        cc_id,
+      </if>
+      <if test="ccCustomerid != null" >
+        cc_customerid,
+      </if>
+      <if test="ccName != null" >
+        cc_name,
+      </if>
+      <if test="ccSex != null" >
+        cc_sex,
+      </if>
+      <if test="ccPosition != null" >
+        cc_position,
+      </if>
+      <if test="ccOfficePhone != null" >
+        cc_office_phone,
+      </if>
+      <if test="ccMobilephone != null" >
+        cc_mobilephone,
+      </if>
+      <if test="ccNotes != null" >
+        cc_notes,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ccId != null" >
+        #{ccId,jdbcType=INTEGER},
+      </if>
+      <if test="ccCustomerid != null" >
+        #{ccCustomerid,jdbcType=VARCHAR},
+      </if>
+      <if test="ccName != null" >
+        #{ccName,jdbcType=VARCHAR},
+      </if>
+      <if test="ccSex != null" >
+        #{ccSex,jdbcType=VARCHAR},
+      </if>
+      <if test="ccPosition != null" >
+        #{ccPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="ccOfficePhone != null" >
+        #{ccOfficePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="ccMobilephone != null" >
+        #{ccMobilephone,jdbcType=VARCHAR},
+      </if>
+      <if test="ccNotes != null" >
+        #{ccNotes,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.entity.customer.CustomerContact" >
+    update customer_contact
+    <set >
+      <if test="ccCustomerid != null" >
+        cc_customerid = #{ccCustomerid,jdbcType=VARCHAR},
+      </if>
+      <if test="ccName != null" >
+        cc_name = #{ccName,jdbcType=VARCHAR},
+      </if>
+      <if test="ccSex != null" >
+        cc_sex = #{ccSex,jdbcType=VARCHAR},
+      </if>
+      <if test="ccPosition != null" >
+        cc_position = #{ccPosition,jdbcType=VARCHAR},
+      </if>
+      <if test="ccOfficePhone != null" >
+        cc_office_phone = #{ccOfficePhone,jdbcType=VARCHAR},
+      </if>
+      <if test="ccMobilephone != null" >
+        cc_mobilephone = #{ccMobilephone,jdbcType=VARCHAR},
+      </if>
+      <if test="ccNotes != null" >
+        cc_notes = #{ccNotes,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where cc_id = #{ccId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.entity.customer.CustomerContact" >
+    update customer_contact
+    set cc_customerid = #{ccCustomerid,jdbcType=VARCHAR},
+      cc_name = #{ccName,jdbcType=VARCHAR},
+      cc_sex = #{ccSex,jdbcType=VARCHAR},
+      cc_position = #{ccPosition,jdbcType=VARCHAR},
+      cc_office_phone = #{ccOfficePhone,jdbcType=VARCHAR},
+      cc_mobilephone = #{ccMobilephone,jdbcType=VARCHAR},
+      cc_notes = #{ccNotes,jdbcType=VARCHAR}
+    where cc_id = #{ccId,jdbcType=INTEGER}
+  </update>
+</mapper>

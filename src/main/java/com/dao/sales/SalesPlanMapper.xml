@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.sales.SalesPlanMapper" >
+  <resultMap id="BaseResultMap" type="com.entity.sales.SalesPlan" >
+    <id column="sop_id" property="sopId" jdbcType="INTEGER" />
+    <result column="sop_so_id" property="sopSoId" jdbcType="INTEGER" />
+    <result column="sop_date" property="sopDate" jdbcType="DATE" />
+    <result column="sop_content" property="sopContent" jdbcType="VARCHAR" />
+    <result column="sop_result" property="sopResult" jdbcType="VARCHAR" />
+    <result column="sop_status" property="sopStatus" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    sop_id, sop_so_id, sop_date, sop_content, sop_result, sop_status
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sales_opportunities_plan
+    where sop_id = #{sopId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sales_opportunities_plan
+    where sop_id = #{sopId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.entity.sales.SalesPlan" >
+    insert into sales_opportunities_plan (sop_id, sop_so_id, sop_date, 
+      sop_content, sop_result, sop_status
+      )
+    values (#{sopId,jdbcType=INTEGER}, #{sopSoId,jdbcType=INTEGER}, #{sopDate,jdbcType=DATE}, 
+      #{sopContent,jdbcType=VARCHAR}, #{sopResult,jdbcType=VARCHAR}, #{sopStatus,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.entity.sales.SalesPlan" >
+    insert into sales_opportunities_plan
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sopId != null" >
+        sop_id,
+      </if>
+      <if test="sopSoId != null" >
+        sop_so_id,
+      </if>
+      <if test="sopDate != null" >
+        sop_date,
+      </if>
+      <if test="sopContent != null" >
+        sop_content,
+      </if>
+      <if test="sopResult != null" >
+        sop_result,
+      </if>
+      <if test="sopStatus != null" >
+        sop_status,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sopId != null" >
+        #{sopId,jdbcType=INTEGER},
+      </if>
+      <if test="sopSoId != null" >
+        #{sopSoId,jdbcType=INTEGER},
+      </if>
+      <if test="sopDate != null" >
+        #{sopDate,jdbcType=DATE},
+      </if>
+      <if test="sopContent != null" >
+        #{sopContent,jdbcType=VARCHAR},
+      </if>
+      <if test="sopResult != null" >
+        #{sopResult,jdbcType=VARCHAR},
+      </if>
+      <if test="sopStatus != null" >
+        #{sopStatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.entity.sales.SalesPlan" >
+    update sales_opportunities_plan
+    <set >
+      <if test="sopSoId != null" >
+        sop_so_id = #{sopSoId,jdbcType=INTEGER},
+      </if>
+      <if test="sopDate != null" >
+        sop_date = #{sopDate,jdbcType=DATE},
+      </if>
+      <if test="sopContent != null" >
+        sop_content = #{sopContent,jdbcType=VARCHAR},
+      </if>
+      <if test="sopResult != null" >
+        sop_result = #{sopResult,jdbcType=VARCHAR},
+      </if>
+      <if test="sopStatus != null" >
+        sop_status = #{sopStatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sop_id = #{sopId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.entity.sales.SalesPlan" >
+    update sales_opportunities_plan
+    set sop_so_id = #{sopSoId,jdbcType=INTEGER},
+      sop_date = #{sopDate,jdbcType=DATE},
+      sop_content = #{sopContent,jdbcType=VARCHAR},
+      sop_result = #{sopResult,jdbcType=VARCHAR},
+      sop_status = #{sopStatus,jdbcType=VARCHAR}
+    where sop_id = #{sopId,jdbcType=INTEGER}
+  </update>
+</mapper>
