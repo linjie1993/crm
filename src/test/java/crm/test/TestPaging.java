@@ -6,7 +6,7 @@ import com.util.tools.PagingUtil;
 
 
 
-public class testPaging {
+public class TestPaging {
 	@Test
 	public void test() {
 		PagingUtil p=new PagingUtil();
