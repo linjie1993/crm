@@ -12,7 +12,6 @@
 	<!-- 访问静态资源 -->
 	<mvc:default-servlet-handler />
 	<!-- 启动注解 -->
-	<mvc:annotation-driven />
 	<mvc:annotation-driven>
 		<!-- 设定字符集和json处理类 -->
 		<mvc:message-converters>
