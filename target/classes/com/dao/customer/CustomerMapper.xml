@@ -1,270 +1,368 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.dao.customer.CustomerMapper" >
-  <resultMap id="BaseResultMap" type="com.entity.customer.Customer" >
-    <id column="c_id" property="cId" jdbcType="INTEGER" />
-    <result column="c_name" property="cName" jdbcType="VARCHAR" />
-    <result column="c_a_id" property="cAId" jdbcType="INTEGER" />
-    <result column="c_contact_name" property="cContactName" jdbcType="VARCHAR" />
-    <result column="c_cl_id" property="cClId" jdbcType="INTEGER" />
-    <result column="c_credit_line" property="cCreditLine" jdbcType="VARCHAR" />
-    <result column="c_satisfaction" property="cSatisfaction" jdbcType="VARCHAR" />
-    <result column="c_address" property="cAddress" jdbcType="VARCHAR" />
-    <result column="c_telephone" property="cTelephone" jdbcType="VARCHAR" />
-    <result column="c_fax" property="cFax" jdbcType="VARCHAR" />
-    <result column="c_postcode" property="cPostcode" jdbcType="VARCHAR" />
-    <result column="c_url" property="cUrl" jdbcType="VARCHAR" />
-    <result column="c_business_license" property="cBusinessLicense" jdbcType="VARCHAR" />
-    <result column="c_reg_money" property="cRegMoney" jdbcType="BIGINT" />
-    <result column="c_deposit_bank" property="cDepositBank" jdbcType="VARCHAR" />
-    <result column="c_bank_account" property="cBankAccount" jdbcType="VARCHAR" />
-    <result column="c_state_taxes_number" property="cStateTaxesNumber" jdbcType="VARCHAR" />
-    <result column="c_local_taxes_number" property="cLocalTaxesNumber" jdbcType="VARCHAR" />
-    <result column="c_corporation" property="cCorporation" jdbcType="VARCHAR" />
-    <result column="c_yearly_turnover" property="cYearlyTurnover" jdbcType="BIGINT" />
-  </resultMap>
-  <sql id="Base_Column_List" >
-    c_id, c_name, c_a_id, c_contact_name, c_cl_id, c_credit_line, c_satisfaction, c_address, 
-    c_telephone, c_fax, c_postcode, c_url, c_business_license, c_reg_money, c_deposit_bank, 
-    c_bank_account, c_state_taxes_number, c_local_taxes_number, c_corporation, c_yearly_turnover
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from customer_t
-    where c_id = #{cId,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from customer_t
-    where c_id = #{cId,jdbcType=INTEGER}
-  </delete>
-  <insert id="insert" parameterType="com.entity.customer.Customer" >
-    insert into customer_t (c_id, c_name, c_a_id, 
-      c_contact_name, c_cl_id, c_credit_line, 
-      c_satisfaction, c_address, c_telephone, 
-      c_fax, c_postcode, c_url, 
-      c_business_license, c_reg_money, c_deposit_bank, 
-      c_bank_account, c_state_taxes_number, c_local_taxes_number, 
-      c_corporation, c_yearly_turnover)
-    values (#{cId,jdbcType=INTEGER}, #{cName,jdbcType=VARCHAR}, #{cAId,jdbcType=INTEGER}, 
-      #{cContactName,jdbcType=VARCHAR}, #{cClId,jdbcType=INTEGER}, #{cCreditLine,jdbcType=VARCHAR}, 
-      #{cSatisfaction,jdbcType=VARCHAR}, #{cAddress,jdbcType=VARCHAR}, #{cTelephone,jdbcType=VARCHAR}, 
-      #{cFax,jdbcType=VARCHAR}, #{cPostcode,jdbcType=VARCHAR}, #{cUrl,jdbcType=VARCHAR}, 
-      #{cBusinessLicense,jdbcType=VARCHAR}, #{cRegMoney,jdbcType=BIGINT}, #{cDepositBank,jdbcType=VARCHAR}, 
-      #{cBankAccount,jdbcType=VARCHAR}, #{cStateTaxesNumber,jdbcType=VARCHAR}, #{cLocalTaxesNumber,jdbcType=VARCHAR}, 
-      #{cCorporation,jdbcType=VARCHAR}, #{cYearlyTurnover,jdbcType=BIGINT})
-  </insert>
-  <insert id="insertSelective" parameterType="com.entity.customer.Customer" >
-    insert into customer_t
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="cId != null" >
-        c_id,
-      </if>
-      <if test="cName != null" >
-        c_name,
-      </if>
-      <if test="cAId != null" >
-        c_a_id,
-      </if>
-      <if test="cContactName != null" >
-        c_contact_name,
-      </if>
-      <if test="cClId != null" >
-        c_cl_id,
-      </if>
-      <if test="cCreditLine != null" >
-        c_credit_line,
-      </if>
-      <if test="cSatisfaction != null" >
-        c_satisfaction,
-      </if>
-      <if test="cAddress != null" >
-        c_address,
-      </if>
-      <if test="cTelephone != null" >
-        c_telephone,
-      </if>
-      <if test="cFax != null" >
-        c_fax,
-      </if>
-      <if test="cPostcode != null" >
-        c_postcode,
-      </if>
-      <if test="cUrl != null" >
-        c_url,
-      </if>
-      <if test="cBusinessLicense != null" >
-        c_business_license,
-      </if>
-      <if test="cRegMoney != null" >
-        c_reg_money,
-      </if>
-      <if test="cDepositBank != null" >
-        c_deposit_bank,
-      </if>
-      <if test="cBankAccount != null" >
-        c_bank_account,
-      </if>
-      <if test="cStateTaxesNumber != null" >
-        c_state_taxes_number,
-      </if>
-      <if test="cLocalTaxesNumber != null" >
-        c_local_taxes_number,
-      </if>
-      <if test="cCorporation != null" >
-        c_corporation,
-      </if>
-      <if test="cYearlyTurnover != null" >
-        c_yearly_turnover,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="cId != null" >
-        #{cId,jdbcType=INTEGER},
-      </if>
-      <if test="cName != null" >
-        #{cName,jdbcType=VARCHAR},
-      </if>
-      <if test="cAId != null" >
-        #{cAId,jdbcType=INTEGER},
-      </if>
-      <if test="cContactName != null" >
-        #{cContactName,jdbcType=VARCHAR},
-      </if>
-      <if test="cClId != null" >
-        #{cClId,jdbcType=INTEGER},
-      </if>
-      <if test="cCreditLine != null" >
-        #{cCreditLine,jdbcType=VARCHAR},
-      </if>
-      <if test="cSatisfaction != null" >
-        #{cSatisfaction,jdbcType=VARCHAR},
-      </if>
-      <if test="cAddress != null" >
-        #{cAddress,jdbcType=VARCHAR},
-      </if>
-      <if test="cTelephone != null" >
-        #{cTelephone,jdbcType=VARCHAR},
-      </if>
-      <if test="cFax != null" >
-        #{cFax,jdbcType=VARCHAR},
-      </if>
-      <if test="cPostcode != null" >
-        #{cPostcode,jdbcType=VARCHAR},
-      </if>
-      <if test="cUrl != null" >
-        #{cUrl,jdbcType=VARCHAR},
-      </if>
-      <if test="cBusinessLicense != null" >
-        #{cBusinessLicense,jdbcType=VARCHAR},
-      </if>
-      <if test="cRegMoney != null" >
-        #{cRegMoney,jdbcType=BIGINT},
-      </if>
-      <if test="cDepositBank != null" >
-        #{cDepositBank,jdbcType=VARCHAR},
-      </if>
-      <if test="cBankAccount != null" >
-        #{cBankAccount,jdbcType=VARCHAR},
-      </if>
-      <if test="cStateTaxesNumber != null" >
-        #{cStateTaxesNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="cLocalTaxesNumber != null" >
-        #{cLocalTaxesNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="cCorporation != null" >
-        #{cCorporation,jdbcType=VARCHAR},
-      </if>
-      <if test="cYearlyTurnover != null" >
-        #{cYearlyTurnover,jdbcType=BIGINT},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.entity.customer.Customer" >
-    update customer_t
-    <set >
-      <if test="cName != null" >
-        c_name = #{cName,jdbcType=VARCHAR},
-      </if>
-      <if test="cAId != null" >
-        c_a_id = #{cAId,jdbcType=INTEGER},
-      </if>
-      <if test="cContactName != null" >
-        c_contact_name = #{cContactName,jdbcType=VARCHAR},
-      </if>
-      <if test="cClId != null" >
-        c_cl_id = #{cClId,jdbcType=INTEGER},
-      </if>
-      <if test="cCreditLine != null" >
-        c_credit_line = #{cCreditLine,jdbcType=VARCHAR},
-      </if>
-      <if test="cSatisfaction != null" >
-        c_satisfaction = #{cSatisfaction,jdbcType=VARCHAR},
-      </if>
-      <if test="cAddress != null" >
-        c_address = #{cAddress,jdbcType=VARCHAR},
-      </if>
-      <if test="cTelephone != null" >
-        c_telephone = #{cTelephone,jdbcType=VARCHAR},
-      </if>
-      <if test="cFax != null" >
-        c_fax = #{cFax,jdbcType=VARCHAR},
-      </if>
-      <if test="cPostcode != null" >
-        c_postcode = #{cPostcode,jdbcType=VARCHAR},
-      </if>
-      <if test="cUrl != null" >
-        c_url = #{cUrl,jdbcType=VARCHAR},
-      </if>
-      <if test="cBusinessLicense != null" >
-        c_business_license = #{cBusinessLicense,jdbcType=VARCHAR},
-      </if>
-      <if test="cRegMoney != null" >
-        c_reg_money = #{cRegMoney,jdbcType=BIGINT},
-      </if>
-      <if test="cDepositBank != null" >
-        c_deposit_bank = #{cDepositBank,jdbcType=VARCHAR},
-      </if>
-      <if test="cBankAccount != null" >
-        c_bank_account = #{cBankAccount,jdbcType=VARCHAR},
-      </if>
-      <if test="cStateTaxesNumber != null" >
-        c_state_taxes_number = #{cStateTaxesNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="cLocalTaxesNumber != null" >
-        c_local_taxes_number = #{cLocalTaxesNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="cCorporation != null" >
-        c_corporation = #{cCorporation,jdbcType=VARCHAR},
-      </if>
-      <if test="cYearlyTurnover != null" >
-        c_yearly_turnover = #{cYearlyTurnover,jdbcType=BIGINT},
-      </if>
-    </set>
-    where c_id = #{cId,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.entity.customer.Customer" >
-    update customer_t
-    set c_name = #{cName,jdbcType=VARCHAR},
-      c_a_id = #{cAId,jdbcType=INTEGER},
-      c_contact_name = #{cContactName,jdbcType=VARCHAR},
-      c_cl_id = #{cClId,jdbcType=INTEGER},
-      c_credit_line = #{cCreditLine,jdbcType=VARCHAR},
-      c_satisfaction = #{cSatisfaction,jdbcType=VARCHAR},
-      c_address = #{cAddress,jdbcType=VARCHAR},
-      c_telephone = #{cTelephone,jdbcType=VARCHAR},
-      c_fax = #{cFax,jdbcType=VARCHAR},
-      c_postcode = #{cPostcode,jdbcType=VARCHAR},
-      c_url = #{cUrl,jdbcType=VARCHAR},
-      c_business_license = #{cBusinessLicense,jdbcType=VARCHAR},
-      c_reg_money = #{cRegMoney,jdbcType=BIGINT},
-      c_deposit_bank = #{cDepositBank,jdbcType=VARCHAR},
-      c_bank_account = #{cBankAccount,jdbcType=VARCHAR},
-      c_state_taxes_number = #{cStateTaxesNumber,jdbcType=VARCHAR},
-      c_local_taxes_number = #{cLocalTaxesNumber,jdbcType=VARCHAR},
-      c_corporation = #{cCorporation,jdbcType=VARCHAR},
-      c_yearly_turnover = #{cYearlyTurnover,jdbcType=BIGINT}
-    where c_id = #{cId,jdbcType=INTEGER}
-  </update>
+<mapper namespace="com.dao.customer.CustomerMapper">
+	<resultMap id="customerMap" type="com.entity.customer.Customer">
+		<id column="c_id" property="cId" jdbcType="INTEGER" />
+		<result column="c_name" property="cName" jdbcType="VARCHAR" />
+		<result column="c_a_id" property="cAId" jdbcType="INTEGER" />
+		<result column="c_contact_name" property="cContactName"
+			jdbcType="VARCHAR" />
+		<result column="c_cl_id" property="cClId" jdbcType="INTEGER" />
+		<result column="c_credit_line" property="cCreditLine" jdbcType="VARCHAR" />
+		<result column="c_satisfaction" property="cSatisfaction"
+			jdbcType="VARCHAR" />
+		<result column="c_address" property="cAddress" jdbcType="VARCHAR" />
+		<result column="c_telephone" property="cTelephone" jdbcType="VARCHAR" />
+		<result column="c_fax" property="cFax" jdbcType="VARCHAR" />
+		<result column="c_postcode" property="cPostcode" jdbcType="VARCHAR" />
+		<result column="c_url" property="cUrl" jdbcType="VARCHAR" />
+		<result column="c_business_license" property="cBusinessLicense"
+			jdbcType="VARCHAR" />
+		<result column="c_reg_money" property="cRegMoney" jdbcType="BIGINT" />
+		<result column="c_deposit_bank" property="cDepositBank"
+			jdbcType="VARCHAR" />
+		<result column="c_bank_account" property="cBankAccount"
+			jdbcType="VARCHAR" />
+		<result column="c_state_taxes_number" property="cStateTaxesNumber"
+			jdbcType="VARCHAR" />
+		<result column="c_local_taxes_number" property="cLocalTaxesNumber"
+			jdbcType="VARCHAR" />
+		<result column="c_corporation" property="cCorporation"
+			jdbcType="VARCHAR" />
+		<result column="c_yearly_turnover" property="cYearlyTurnover"
+			jdbcType="BIGINT" />
+		<association property="customerLevel" javaType="com.entity.customer.CustomerLevel"
+			resultMap="levelMap"></association>
+		<association property="area" javaType="com.entity.service.Area"
+			resultMap="areaMap"></association>
+	</resultMap>
+	<resultMap id="levelMap" type="com.entity.customer.CustomerLevel">
+		<id column="c_le_id" property="cLeId" jdbcType="INTEGER" />
+		<result column="c_le_name" property="cLeName" jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="areaMap" type="com.entity.service.Area">
+		<id column="a_id" property="aId" jdbcType="INTEGER" />
+		<result column="a_name" property="aName" jdbcType="VARCHAR" />
+	</resultMap>
+	<!-- 分页查询 -->
+	<select id="getCustmerByPaging" resultMap="customerMap"
+		parameterType="map">
+		select
+		<include refid="Base_Column_List" />
+		,c_le_name,c_le_id,a_id,a_name
+		FROM customer_t
+		INNER JOIN customer_level
+		ON c_cl_id=c_le_id
+		INNER JOIN area_t
+		ON c_a_id=a_id
+		<where>
+			<if test="cId !=null and cId !=''">and c_id like CONCAT('%',#{cId},'%')</if>
+			<if test="cName !=null and cName !=''">and c_name like CONCAT('%',#{cName},'%')</if>
+			<if test="cAId !=null and cAId !=''">and c_a_id like CONCAT('%',#{cAId},'%')</if>
+			<if test="cContactName !=null and cContactName !=''">and c_contact_name like CONCAT('%',#{cContactName},'%')
+			</if>
+			<if test="cClId !=null and cClId !=''">and c_cl_id like CONCAT('%',#{cClId},'%')</if>
+		</where>
+		limit #{from},#{pageSize}
+	</select>
+	<!-- 查询总记录数 -->
+	<select id="countPage" resultType="int" parameterType="map">
+		select COUNT(1)
+		FROM customer_t
+		INNER JOIN customer_level
+		ON
+		c_cl_id=c_le_id
+		INNER JOIN area_t
+		ON c_a_id=a_id
+		<where>
+			<if test="cId !=null and cId !=''">and c_id like CONCAT('%',#{cId},'%')</if>
+			<if test="cName !=null and cName !=''">and c_name like CONCAT('%',#{cName},'%')</if>
+			<if test="cAId !=null and cAId !=''">and c_a_id like CONCAT('%',#{cAId},'%')</if>
+			<if test="cContactName !=null and cContactName !=''">and c_contact_name like CONCAT('%',#{cContactName},'%')
+			</if>
+			<if test="cClId !=null and cClId !=''">and c_cl_id like CONCAT('%',#{cClId},'%')</if>
+		</where>
+	</select>
+
+	<sql id="Base_Column_List">
+		c_id, c_name, c_a_id, c_contact_name, c_cl_id,
+		c_credit_line,
+		c_satisfaction, c_address,
+		c_telephone, c_fax,
+		c_postcode, c_url, c_business_license, c_reg_money,
+		c_deposit_bank,
+		c_bank_account, c_state_taxes_number, c_local_taxes_number,
+		c_corporation,
+		c_yearly_turnover
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="customerMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from customer_t
+		where c_id = #{cId,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		customer_t
+		where c_id = #{cId,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.entity.customer.Customer">
+		insert into customer_t (c_id,
+		c_name, c_a_id,
+		c_contact_name, c_cl_id, c_credit_line,
+		c_satisfaction,
+		c_address, c_telephone,
+		c_fax, c_postcode, c_url,
+		c_business_license,
+		c_reg_money, c_deposit_bank,
+		c_bank_account, c_state_taxes_number,
+		c_local_taxes_number,
+		c_corporation, c_yearly_turnover)
+		values
+		(#{cId,jdbcType=INTEGER}, #{cName,jdbcType=VARCHAR},
+		#{cAId,jdbcType=INTEGER},
+		#{cContactName,jdbcType=VARCHAR},
+		#{cClId,jdbcType=INTEGER}, #{cCreditLine,jdbcType=VARCHAR},
+		#{cSatisfaction,jdbcType=VARCHAR}, #{cAddress,jdbcType=VARCHAR},
+		#{cTelephone,jdbcType=VARCHAR},
+		#{cFax,jdbcType=VARCHAR},
+		#{cPostcode,jdbcType=VARCHAR}, #{cUrl,jdbcType=VARCHAR},
+		#{cBusinessLicense,jdbcType=VARCHAR}, #{cRegMoney,jdbcType=BIGINT},
+		#{cDepositBank,jdbcType=VARCHAR},
+		#{cBankAccount,jdbcType=VARCHAR},
+		#{cStateTaxesNumber,jdbcType=VARCHAR},
+		#{cLocalTaxesNumber,jdbcType=VARCHAR},
+		#{cCorporation,jdbcType=VARCHAR}, #{cYearlyTurnover,jdbcType=BIGINT})
+	</insert>
+	<insert id="insertSelective" parameterType="com.entity.customer.Customer">
+		insert into customer_t
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="cId != null">
+				c_id,
+			</if>
+			<if test="cName != null">
+				c_name,
+			</if>
+			<if test="cAId != null">
+				c_a_id,
+			</if>
+			<if test="cContactName != null">
+				c_contact_name,
+			</if>
+			<if test="cClId != null">
+				c_cl_id,
+			</if>
+			<if test="cCreditLine != null">
+				c_credit_line,
+			</if>
+			<if test="cSatisfaction != null">
+				c_satisfaction,
+			</if>
+			<if test="cAddress != null">
+				c_address,
+			</if>
+			<if test="cTelephone != null">
+				c_telephone,
+			</if>
+			<if test="cFax != null">
+				c_fax,
+			</if>
+			<if test="cPostcode != null">
+				c_postcode,
+			</if>
+			<if test="cUrl != null">
+				c_url,
+			</if>
+			<if test="cBusinessLicense != null">
+				c_business_license,
+			</if>
+			<if test="cRegMoney != null">
+				c_reg_money,
+			</if>
+			<if test="cDepositBank != null">
+				c_deposit_bank,
+			</if>
+			<if test="cBankAccount != null">
+				c_bank_account,
+			</if>
+			<if test="cStateTaxesNumber != null">
+				c_state_taxes_number,
+			</if>
+			<if test="cLocalTaxesNumber != null">
+				c_local_taxes_number,
+			</if>
+			<if test="cCorporation != null">
+				c_corporation,
+			</if>
+			<if test="cYearlyTurnover != null">
+				c_yearly_turnover,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="cId != null">
+				#{cId,jdbcType=INTEGER},
+			</if>
+			<if test="cName != null">
+				#{cName,jdbcType=VARCHAR},
+			</if>
+			<if test="cAId != null">
+				#{cAId,jdbcType=INTEGER},
+			</if>
+			<if test="cContactName != null">
+				#{cContactName,jdbcType=VARCHAR},
+			</if>
+			<if test="cClId != null">
+				#{cClId,jdbcType=INTEGER},
+			</if>
+			<if test="cCreditLine != null">
+				#{cCreditLine,jdbcType=VARCHAR},
+			</if>
+			<if test="cSatisfaction != null">
+				#{cSatisfaction,jdbcType=VARCHAR},
+			</if>
+			<if test="cAddress != null">
+				#{cAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="cTelephone != null">
+				#{cTelephone,jdbcType=VARCHAR},
+			</if>
+			<if test="cFax != null">
+				#{cFax,jdbcType=VARCHAR},
+			</if>
+			<if test="cPostcode != null">
+				#{cPostcode,jdbcType=VARCHAR},
+			</if>
+			<if test="cUrl != null">
+				#{cUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="cBusinessLicense != null">
+				#{cBusinessLicense,jdbcType=VARCHAR},
+			</if>
+			<if test="cRegMoney != null">
+				#{cRegMoney,jdbcType=BIGINT},
+			</if>
+			<if test="cDepositBank != null">
+				#{cDepositBank,jdbcType=VARCHAR},
+			</if>
+			<if test="cBankAccount != null">
+				#{cBankAccount,jdbcType=VARCHAR},
+			</if>
+			<if test="cStateTaxesNumber != null">
+				#{cStateTaxesNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="cLocalTaxesNumber != null">
+				#{cLocalTaxesNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="cCorporation != null">
+				#{cCorporation,jdbcType=VARCHAR},
+			</if>
+			<if test="cYearlyTurnover != null">
+				#{cYearlyTurnover,jdbcType=BIGINT},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.entity.customer.Customer">
+		update customer_t
+		<set>
+			<if test="cName != null">
+				c_name = #{cName,jdbcType=VARCHAR},
+			</if>
+			<if test="cAId != null">
+				c_a_id = #{cAId,jdbcType=INTEGER},
+			</if>
+			<if test="cContactName != null">
+				c_contact_name = #{cContactName,jdbcType=VARCHAR},
+			</if>
+			<if test="cClId != null">
+				c_cl_id = #{cClId,jdbcType=INTEGER},
+			</if>
+			<if test="cCreditLine != null">
+				c_credit_line = #{cCreditLine,jdbcType=VARCHAR},
+			</if>
+			<if test="cSatisfaction != null">
+				c_satisfaction = #{cSatisfaction,jdbcType=VARCHAR},
+			</if>
+			<if test="cAddress != null">
+				c_address = #{cAddress,jdbcType=VARCHAR},
+			</if>
+			<if test="cTelephone != null">
+				c_telephone = #{cTelephone,jdbcType=VARCHAR},
+			</if>
+			<if test="cFax != null">
+				c_fax = #{cFax,jdbcType=VARCHAR},
+			</if>
+			<if test="cPostcode != null">
+				c_postcode = #{cPostcode,jdbcType=VARCHAR},
+			</if>
+			<if test="cUrl != null">
+				c_url = #{cUrl,jdbcType=VARCHAR},
+			</if>
+			<if test="cBusinessLicense != null">
+				c_business_license =
+				#{cBusinessLicense,jdbcType=VARCHAR},
+			</if>
+			<if test="cRegMoney != null">
+				c_reg_money = #{cRegMoney,jdbcType=BIGINT},
+			</if>
+			<if test="cDepositBank != null">
+				c_deposit_bank = #{cDepositBank,jdbcType=VARCHAR},
+			</if>
+			<if test="cBankAccount != null">
+				c_bank_account = #{cBankAccount,jdbcType=VARCHAR},
+			</if>
+			<if test="cStateTaxesNumber != null">
+				c_state_taxes_number =
+				#{cStateTaxesNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="cLocalTaxesNumber != null">
+				c_local_taxes_number =
+				#{cLocalTaxesNumber,jdbcType=VARCHAR},
+			</if>
+			<if test="cCorporation != null">
+				c_corporation = #{cCorporation,jdbcType=VARCHAR},
+			</if>
+			<if test="cYearlyTurnover != null">
+				c_yearly_turnover = #{cYearlyTurnover,jdbcType=BIGINT},
+			</if>
+		</set>
+		where c_id = #{cId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.entity.customer.Customer">
+		update customer_t
+		set c_name = #{cName,jdbcType=VARCHAR},
+		c_a_id =
+		#{cAId,jdbcType=INTEGER},
+		c_contact_name =
+		#{cContactName,jdbcType=VARCHAR},
+		c_cl_id = #{cClId,jdbcType=INTEGER},
+		c_credit_line = #{cCreditLine,jdbcType=VARCHAR},
+		c_satisfaction =
+		#{cSatisfaction,jdbcType=VARCHAR},
+		c_address =
+		#{cAddress,jdbcType=VARCHAR},
+		c_telephone =
+		#{cTelephone,jdbcType=VARCHAR},
+		c_fax = #{cFax,jdbcType=VARCHAR},
+		c_postcode = #{cPostcode,jdbcType=VARCHAR},
+		c_url =
+		#{cUrl,jdbcType=VARCHAR},
+		c_business_license =
+		#{cBusinessLicense,jdbcType=VARCHAR},
+		c_reg_money =
+		#{cRegMoney,jdbcType=BIGINT},
+		c_deposit_bank =
+		#{cDepositBank,jdbcType=VARCHAR},
+		c_bank_account =
+		#{cBankAccount,jdbcType=VARCHAR},
+		c_state_taxes_number =
+		#{cStateTaxesNumber,jdbcType=VARCHAR},
+		c_local_taxes_number =
+		#{cLocalTaxesNumber,jdbcType=VARCHAR},
+		c_corporation =
+		#{cCorporation,jdbcType=VARCHAR},
+		c_yearly_turnover =
+		#{cYearlyTurnover,jdbcType=BIGINT}
+		where c_id = #{cId,jdbcType=INTEGER}
+	</update>
 </mapper>

@@ -2,215 +2,237 @@ package com.entity.customer;
 
 import java.io.Serializable;
 
-public class Customer implements Serializable{
-    /**
+import com.entity.service.Area;
+
+public class Customer implements Serializable {
+	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-    
+
 	private Integer cId;
 
-    private String cName;
+	private String cName;
 
-    private Integer cAId;
+	private Integer cAId;
 
-    private String cContactName;
+	private String cContactName;
 
-    private Integer cClId;
+	private Integer cClId;
 
-    private String cCreditLine;
+	private String cCreditLine;
 
-    private String cSatisfaction;
+	private String cSatisfaction;
 
-    private String cAddress;
+	private String cAddress;
 
-    private String cTelephone;
+	private String cTelephone;
 
-    private String cFax;
+	private String cFax;
 
-    private String cPostcode;
+	private String cPostcode;
 
-    private String cUrl;
+	private String cUrl;
 
-    private String cBusinessLicense;
+	private String cBusinessLicense;
 
-    private Long cRegMoney;
+	private Long cRegMoney;
 
-    private String cDepositBank;
+	private String cDepositBank;
 
-    private String cBankAccount;
+	private String cBankAccount;
 
-    private String cStateTaxesNumber;
+	private String cStateTaxesNumber;
 
-    private String cLocalTaxesNumber;
+	private String cLocalTaxesNumber;
 
-    private String cCorporation;
+	private String cCorporation;
 
-    private Long cYearlyTurnover;
+	private Long cYearlyTurnover;
 
-    public Integer getcId() {
-        return cId;
-    }
+	private Area area;
 
-    public void setcId(Integer cId) {
-        this.cId = cId;
-    }
+	private CustomerLevel customerLevel;
 
-    public String getcName() {
-        return cName;
-    }
+	public Integer getcId() {
+		return cId;
+	}
 
-    public void setcName(String cName) {
-        this.cName = cName == null ? null : cName.trim();
-    }
+	public Area getArea() {
+		return area;
+	}
 
-    public Integer getcAId() {
-        return cAId;
-    }
+	public void setArea(Area area) {
+		this.area = area;
+	}
 
-    public void setcAId(Integer cAId) {
-        this.cAId = cAId;
-    }
+	public CustomerLevel getCustomerLevel() {
+		return customerLevel;
+	}
 
-    public String getcContactName() {
-        return cContactName;
-    }
+	public void setCustomerLevel(CustomerLevel customerLevel) {
+		this.customerLevel = customerLevel;
+	}
 
-    public void setcContactName(String cContactName) {
-        this.cContactName = cContactName == null ? null : cContactName.trim();
-    }
+	public void setcId(Integer cId) {
+		this.cId = cId;
+	}
 
-    public Integer getcClId() {
-        return cClId;
-    }
+	public String getcName() {
+		return cName;
+	}
 
-    public void setcClId(Integer cClId) {
-        this.cClId = cClId;
-    }
+	public void setcName(String cName) {
+		this.cName = cName == null ? null : cName.trim();
+	}
 
-    public String getcCreditLine() {
-        return cCreditLine;
-    }
+	public Integer getcAId() {
+		return cAId;
+	}
 
-    public void setcCreditLine(String cCreditLine) {
-        this.cCreditLine = cCreditLine == null ? null : cCreditLine.trim();
-    }
+	public void setcAId(Integer cAId) {
+		this.cAId = cAId;
+	}
 
-    public String getcSatisfaction() {
-        return cSatisfaction;
-    }
+	public String getcContactName() {
+		return cContactName;
+	}
 
-    public void setcSatisfaction(String cSatisfaction) {
-        this.cSatisfaction = cSatisfaction == null ? null : cSatisfaction.trim();
-    }
+	public void setcContactName(String cContactName) {
+		this.cContactName = cContactName == null ? null : cContactName.trim();
+	}
 
-    public String getcAddress() {
-        return cAddress;
-    }
+	public Integer getcClId() {
+		return cClId;
+	}
 
-    public void setcAddress(String cAddress) {
-        this.cAddress = cAddress == null ? null : cAddress.trim();
-    }
+	public void setcClId(Integer cClId) {
+		this.cClId = cClId;
+	}
 
-    public String getcTelephone() {
-        return cTelephone;
-    }
+	public String getcCreditLine() {
+		return cCreditLine;
+	}
 
-    public void setcTelephone(String cTelephone) {
-        this.cTelephone = cTelephone == null ? null : cTelephone.trim();
-    }
+	public void setcCreditLine(String cCreditLine) {
+		this.cCreditLine = cCreditLine == null ? null : cCreditLine.trim();
+	}
 
-    public String getcFax() {
-        return cFax;
-    }
+	public String getcSatisfaction() {
+		return cSatisfaction;
+	}
 
-    public void setcFax(String cFax) {
-        this.cFax = cFax == null ? null : cFax.trim();
-    }
+	public void setcSatisfaction(String cSatisfaction) {
+		this.cSatisfaction = cSatisfaction == null ? null : cSatisfaction.trim();
+	}
 
-    public String getcPostcode() {
-        return cPostcode;
-    }
+	public String getcAddress() {
+		return cAddress;
+	}
 
-    public void setcPostcode(String cPostcode) {
-        this.cPostcode = cPostcode == null ? null : cPostcode.trim();
-    }
+	public void setcAddress(String cAddress) {
+		this.cAddress = cAddress == null ? null : cAddress.trim();
+	}
 
-    public String getcUrl() {
-        return cUrl;
-    }
+	public String getcTelephone() {
+		return cTelephone;
+	}
 
-    public void setcUrl(String cUrl) {
-        this.cUrl = cUrl == null ? null : cUrl.trim();
-    }
+	public void setcTelephone(String cTelephone) {
+		this.cTelephone = cTelephone == null ? null : cTelephone.trim();
+	}
 
-    public String getcBusinessLicense() {
-        return cBusinessLicense;
-    }
+	public String getcFax() {
+		return cFax;
+	}
 
-    public void setcBusinessLicense(String cBusinessLicense) {
-        this.cBusinessLicense = cBusinessLicense == null ? null : cBusinessLicense.trim();
-    }
+	public void setcFax(String cFax) {
+		this.cFax = cFax == null ? null : cFax.trim();
+	}
 
-    public Long getcRegMoney() {
-        return cRegMoney;
-    }
+	public String getcPostcode() {
+		return cPostcode;
+	}
 
-    public void setcRegMoney(Long cRegMoney) {
-        this.cRegMoney = cRegMoney;
-    }
+	public void setcPostcode(String cPostcode) {
+		this.cPostcode = cPostcode == null ? null : cPostcode.trim();
+	}
 
-    public String getcDepositBank() {
-        return cDepositBank;
-    }
+	public String getcUrl() {
+		return cUrl;
+	}
 
-    public void setcDepositBank(String cDepositBank) {
-        this.cDepositBank = cDepositBank == null ? null : cDepositBank.trim();
-    }
+	public void setcUrl(String cUrl) {
+		this.cUrl = cUrl == null ? null : cUrl.trim();
+	}
 
-    public String getcBankAccount() {
-        return cBankAccount;
-    }
+	public String getcBusinessLicense() {
+		return cBusinessLicense;
+	}
 
-    public void setcBankAccount(String cBankAccount) {
-        this.cBankAccount = cBankAccount == null ? null : cBankAccount.trim();
-    }
+	public void setcBusinessLicense(String cBusinessLicense) {
+		this.cBusinessLicense = cBusinessLicense == null ? null : cBusinessLicense.trim();
+	}
 
-    public String getcStateTaxesNumber() {
-        return cStateTaxesNumber;
-    }
+	public Long getcRegMoney() {
+		return cRegMoney;
+	}
 
-    public void setcStateTaxesNumber(String cStateTaxesNumber) {
-        this.cStateTaxesNumber = cStateTaxesNumber == null ? null : cStateTaxesNumber.trim();
-    }
+	public void setcRegMoney(Long cRegMoney) {
+		this.cRegMoney = cRegMoney;
+	}
 
-    public String getcLocalTaxesNumber() {
-        return cLocalTaxesNumber;
-    }
+	public String getcDepositBank() {
+		return cDepositBank;
+	}
 
-    public void setcLocalTaxesNumber(String cLocalTaxesNumber) {
-        this.cLocalTaxesNumber = cLocalTaxesNumber == null ? null : cLocalTaxesNumber.trim();
-    }
+	public void setcDepositBank(String cDepositBank) {
+		this.cDepositBank = cDepositBank == null ? null : cDepositBank.trim();
+	}
 
-    public String getcCorporation() {
-        return cCorporation;
-    }
+	public String getcBankAccount() {
+		return cBankAccount;
+	}
 
-    public void setcCorporation(String cCorporation) {
-        this.cCorporation = cCorporation == null ? null : cCorporation.trim();
-    }
+	public void setcBankAccount(String cBankAccount) {
+		this.cBankAccount = cBankAccount == null ? null : cBankAccount.trim();
+	}
 
-    public Long getcYearlyTurnover() {
-        return cYearlyTurnover;
-    }
+	public String getcStateTaxesNumber() {
+		return cStateTaxesNumber;
+	}
 
-    public void setcYearlyTurnover(Long cYearlyTurnover) {
-        this.cYearlyTurnover = cYearlyTurnover;
-    }
+	public void setcStateTaxesNumber(String cStateTaxesNumber) {
+		this.cStateTaxesNumber = cStateTaxesNumber == null ? null : cStateTaxesNumber.trim();
+	}
+
+	public String getcLocalTaxesNumber() {
+		return cLocalTaxesNumber;
+	}
+
+	public void setcLocalTaxesNumber(String cLocalTaxesNumber) {
+		this.cLocalTaxesNumber = cLocalTaxesNumber == null ? null : cLocalTaxesNumber.trim();
+	}
+
+	public String getcCorporation() {
+		return cCorporation;
+	}
+
+	public void setcCorporation(String cCorporation) {
+		this.cCorporation = cCorporation == null ? null : cCorporation.trim();
+	}
+
+	public Long getcYearlyTurnover() {
+		return cYearlyTurnover;
+	}
+
+	public void setcYearlyTurnover(Long cYearlyTurnover) {
+		this.cYearlyTurnover = cYearlyTurnover;
+	}
 
 	public Customer() {
 		super();
-		
+
 	}
 
 	public Customer(String cName, Integer cAId, String cContactName, Integer cClId, String cCreditLine,
@@ -249,5 +271,5 @@ public class Customer implements Serializable{
 				+ cStateTaxesNumber + ", cLocalTaxesNumber=" + cLocalTaxesNumber + ", cCorporation=" + cCorporation
 				+ ", cYearlyTurnover=" + cYearlyTurnover + "]";
 	}
-    
+
 }

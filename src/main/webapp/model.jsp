@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<a href="customManage/customerInfo.html">customManage/customerInfo.html</a>
 </body>
 </html>
